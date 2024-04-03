@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+# logfile="$(pwd)/log/mylog.log"
+
+# Create logfile if not exist
+[[ -z "$logfile" ]] || { mkdir -p "${logfile%/*}"; > "$logfile"; }
+
+log() {
+  # Get status if exist
+  [[ $2 ]] && { local status=$1; shift; }
+
+  # Get message
+  local msg="${1^}"
+
+  # Open brackets status
+  echo -n [
+
+  # Get status and change output color
+  case $status in
+    err*) status=ERR; tput setaf 1 ;;
+    suc*) status=SUC; tput setaf 2 ;;
+    war*) status=WAR; tput setaf 3 ;;
+    inf*) status=INF; tput setaf 4 ;;
+       *) status=LOG ;;
+  esac
+
+  # Echo status in color
+  echo -n $status 
+
+  # Reset color and close brackets
+  tput sgr0; echo -en '] '
+
+  # Show message in screen
+  echo $msg
+
+  # If logfile redirect to log file
+  if [[ $logfile ]]; then
+    echo "$(date +"[%Y-%m-%d %H:%M:%S]") [$status] ${msg^}" >> "${logfile}"
+  fi
+}
+

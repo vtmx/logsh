@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+. log
+log 'teste de mensagem comum'
+log inf 'teste de mensagem de informação'
+log suc 'teste de mensagem de sucesso'
+log war 'teste de mensagem de alerta'
+log err 'teste de mensagem de erro'
