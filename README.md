@@ -3,6 +3,8 @@
 A simple log in bash.
 
 ```bash
+#!/usr/bin/bash
+
 log 'messge for log'
 log suc 'messge for success log'
 log inf 'messge for info log'
