@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-logfile="$(pwd)/logdir/mylog.log"
+# logfile="$(pwd)/logdir/mylog.log"
 
 # Create logfile if not exist
 [[ -d "${logfile%/*}" ]] || { mkdir -p "${logfile%/*}"; }
