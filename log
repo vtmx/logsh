@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
-# logfile="$(pwd)/log/mylog.log"
+logfile="$(pwd)/logdir/mylog.log"
 
 # Create logfile if not exist
-[[ -z "$logfile" ]] || { mkdir -p "${logfile%/*}"; > "$logfile"; }
+[[ -d "${logfile%/*}" ]] || { mkdir -p "${logfile%/*}"; }
+
 
 log() {
   # Get status if exist
@@ -30,12 +31,12 @@ log() {
   # Reset color and close brackets
   tput sgr0; echo -en '] '
 
-  # Show message in screen
-  echo $msg
+  # Show message in screen hightlight 'words'
+  sed -E "s/'(.[^']+)'/$(tput setaf 6)'$(tput setaf 2)\1$(tput setaf 6)'$(tput setaf sgr0)/g" <<< "$msg"
 
   # If logfile redirect to log file
-  if [[ $logfile ]]; then
-    echo "$(date +"[%Y-%m-%d %H:%M:%S]") [$status] ${msg^}" >> "${logfile}"
+  if [[ "$logfile" ]]; then
+    echo "$(date +"[%Y-%m-%d %H:%M:%S]") [$status] ${msg}" >> "${logfile}"
   fi
 }
 
