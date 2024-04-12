@@ -3,7 +3,7 @@
 # logfile="$(pwd)/logdir/mylog.log"
 
 # Create logfile if not exist
-[[ -d "${logfile%/*}" ]] || { mkdir -p "${logfile%/*}"; }
+[[ "${logfile%/*}" && ! -d "${logfile%/*}" ]] && { mkdir -p "${logfile%/*}"; }
 
 
 log() {
@@ -35,7 +35,7 @@ log() {
   sed -E "s/'(.[^']+)'/$(tput setaf 6)'$(tput setaf 2)\1$(tput setaf 6)'$(tput setaf sgr0)/g" <<< "$msg"
 
   # If logfile redirect to log file
-  if [[ "$logfile" ]]; then
+  if [[ -f "$logfile" ]]; then
     echo "$(date +"[%Y-%m-%d %H:%M:%S]") [$status] ${msg}" >> "${logfile}"
   fi
 }
