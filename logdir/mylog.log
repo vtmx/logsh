@@ -1,0 +1,5 @@
+[2024-04-17 20:03:18] [LOG] Message for 'log' in 'test'
+[2024-04-17 20:03:18] [INF] Message for 'info'
+[2024-04-17 20:03:18] [SUC] Message for 'success'
+[2024-04-17 20:03:18] [WAR] Message for 'warning'
+[2024-04-17 20:03:18] [ERR] Message for 'error'

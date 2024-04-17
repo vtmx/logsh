@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 . log
-log "message for 'log'"
+log "message for 'log' in 'test'"
 log inf "message for 'info'"
 log suc "message for 'success'"
 log war "message for 'warning'"
