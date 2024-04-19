@@ -29,7 +29,7 @@ log() {
   printf $status
 
   # Reset color and close brackets
-  tput sgr0; echo -en '] '
+  tput sgr0; printf '] '
 
   # Show message in screen hightlight 'words'
   sed -E "s/'(.[^']+)'/$(tput setaf 6)'$(tput setaf 2)\1$(tput setaf 6)'$(tput setaf sgr0)/g" <<< "$msg"
